@@ -2,45 +2,63 @@ import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Import menu images
+import cocktail1 from '@/assets/menu/cocktail-1.jpg';
+import cocktail2 from '@/assets/menu/cocktail-2.jpg';
+import cocktail3 from '@/assets/menu/cocktail-3.jpg';
+import cocktail4 from '@/assets/menu/cocktail-4.jpg';
+import mocktail1 from '@/assets/menu/mocktail-1.jpg';
+import mocktail2 from '@/assets/menu/mocktail-2.jpg';
+import mocktail3 from '@/assets/menu/mocktail-3.jpg';
+import mocktail4 from '@/assets/menu/mocktail-4.jpg';
+import snack1 from '@/assets/menu/snack-1.jpg';
+import snack2 from '@/assets/menu/snack-2.jpg';
+import snack3 from '@/assets/menu/snack-3.jpg';
+import snack4 from '@/assets/menu/snack-4.jpg';
+import main1 from '@/assets/menu/main-1.jpg';
+import main2 from '@/assets/menu/main-2.jpg';
+import main3 from '@/assets/menu/main-3.jpg';
+import main4 from '@/assets/menu/main-4.jpg';
+
 const menuCategories = [
   {
     id: 'cocktails',
     name: 'Signature Cocktails',
     items: [
-      { name: 'Nation 52 Special', description: 'Vodka, passion fruit, lime, prosecco', price: '₹550' },
-      { name: 'Golden Hour', description: 'Whiskey, honey, lemon, bitters', price: '₹650' },
-      { name: 'Midnight Rose', description: 'Gin, rose syrup, elderflower, sparkling water', price: '₹500' },
-      { name: 'Smoky Manhattan', description: 'Bourbon, sweet vermouth, smoked with applewood', price: '₹700' },
+      { name: 'Nation 52 Special', description: 'Vodka, passion fruit, lime, prosecco', price: '₹550', image: cocktail1 },
+      { name: 'Golden Hour', description: 'Whiskey, honey, lemon, bitters', price: '₹650', image: cocktail2 },
+      { name: 'Midnight Rose', description: 'Gin, rose syrup, elderflower, sparkling water', price: '₹500', image: cocktail3 },
+      { name: 'Smoky Manhattan', description: 'Bourbon, sweet vermouth, smoked with applewood', price: '₹700', image: cocktail4 },
     ],
   },
   {
     id: 'mocktails',
     name: 'Premium Mocktails',
     items: [
-      { name: 'Virgin Mojito', description: 'Fresh mint, lime, soda, sugar', price: '₹300' },
-      { name: 'Blue Lagoon', description: 'Blue curacao syrup, lemonade, sprite', price: '₹280' },
-      { name: 'Tropical Sunset', description: 'Mango, orange, grenadine, pineapple', price: '₹320' },
-      { name: 'Berry Blast', description: 'Mixed berries, lemon, sparkling water', price: '₹350' },
+      { name: 'Virgin Mojito', description: 'Fresh mint, lime, soda, sugar', price: '₹300', image: mocktail1 },
+      { name: 'Blue Lagoon', description: 'Blue curacao syrup, lemonade, sprite', price: '₹280', image: mocktail2 },
+      { name: 'Tropical Sunset', description: 'Mango, orange, grenadine, pineapple', price: '₹320', image: mocktail3 },
+      { name: 'Berry Blast', description: 'Mixed berries, lemon, sparkling water', price: '₹350', image: mocktail4 },
     ],
   },
   {
     id: 'snacks',
     name: 'Bar Snacks',
     items: [
-      { name: 'Truffle Fries', description: 'Hand-cut fries with truffle oil & parmesan', price: '₹450' },
-      { name: 'Loaded Nachos', description: 'Cheese, jalapeños, salsa, guacamole', price: '₹420' },
-      { name: 'Chicken Wings', description: 'Choice of BBQ, buffalo, or honey sriracha', price: '₹520' },
-      { name: 'Mezze Platter', description: 'Hummus, baba ganoush, pita, olives', price: '₹580' },
+      { name: 'Truffle Fries', description: 'Hand-cut fries with truffle oil & parmesan', price: '₹450', image: snack1 },
+      { name: 'Loaded Nachos', description: 'Cheese, jalapeños, salsa, guacamole', price: '₹420', image: snack2 },
+      { name: 'Chicken Wings', description: 'Choice of BBQ, buffalo, or honey sriracha', price: '₹520', image: snack3 },
+      { name: 'Mezze Platter', description: 'Hummus, baba ganoush, pita, olives', price: '₹580', image: snack4 },
     ],
   },
   {
     id: 'mains',
     name: 'Main Course',
     items: [
-      { name: 'Grilled Lamb Chops', description: 'Herb-crusted with mint sauce', price: '₹1200' },
-      { name: 'Pan-Seared Salmon', description: 'With asparagus and lemon butter', price: '₹980' },
-      { name: 'Butter Chicken', description: 'Classic creamy tomato curry', price: '₹650' },
-      { name: 'Mushroom Risotto', description: 'Arborio rice, mixed mushrooms, truffle', price: '₹720' },
+      { name: 'Grilled Lamb Chops', description: 'Herb-crusted with mint sauce', price: '₹1200', image: main1 },
+      { name: 'Pan-Seared Salmon', description: 'With asparagus and lemon butter', price: '₹980', image: main2 },
+      { name: 'Butter Chicken', description: 'Classic creamy tomato curry', price: '₹650', image: main3 },
+      { name: 'Mushroom Risotto', description: 'Arborio rice, mixed mushrooms, truffle', price: '₹720', image: main4 },
     ],
   },
 ];
@@ -93,7 +111,7 @@ const MenuSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+            className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"
           >
             {activeItems.map((item, index) => (
               <motion.div
@@ -101,24 +119,36 @@ const MenuSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative p-6 rounded-xl bg-gradient-card border border-border/50 hover:border-primary/30 transition-all duration-500"
+                className="group relative rounded-xl bg-gradient-card border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden"
               >
-                <div className="flex justify-between items-start gap-4">
-                  <div className="flex-1">
-                    <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
-                      {item.name}
-                    </h3>
+                <div className="flex gap-4">
+                  {/* Image */}
+                  <div className="w-28 h-28 md:w-32 md:h-32 flex-shrink-0 overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 py-4 pr-4 flex flex-col justify-center">
+                    <div className="flex justify-between items-start gap-2 mb-2">
+                      <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {item.name}
+                      </h3>
+                      <span className="text-primary font-semibold text-lg whitespace-nowrap">
+                        {item.price}
+                      </span>
+                    </div>
                     <p className="text-muted-foreground text-sm">
                       {item.description}
                     </p>
                   </div>
-                  <span className="text-primary font-semibold text-lg whitespace-nowrap">
-                    {item.price}
-                  </span>
                 </div>
                 
                 {/* Decorative line */}
-                <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
           </motion.div>
