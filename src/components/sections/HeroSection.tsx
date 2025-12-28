@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import VideoBackground from '@/components/VideoBackground';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Phone, MapPin, Calendar, ChevronDown } from 'lucide-react';
+import heroVideo from '@/assets/hero-lounge-video.mp4';
 
 const HeroSection = () => {
   const scrollToNext = () => {
@@ -12,7 +13,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <VideoBackground 
-        videoUrl="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
+        videoUrl={heroVideo}
       />
       
       <div className="relative z-10 container mx-auto px-4 text-center">
